@@ -18,20 +18,26 @@ https://github.com/albertomozo/web-01-intro
 
 ## Imagenes
 
-
+https://github.com/albertomozo/HTML-IMAGENES
 
 ## FONTS
 
-
+https://github.com/albertomozo/HTML-FONTS
 
 ## columnas
 
-## columnas_responsive
+https://github.com/albertomozo/HTML-COLUMNAS
+
 
 ## formularios
 
+https://github.com/albertomozo/HTML-FORMULARIOS
 
 ## bootstrap
+
+https://github.com/albertomozo/HTML-BOOTSTRAP
+https://github.com/albertomozo/HTML-BOOTSTRAP
+
 
 
 
