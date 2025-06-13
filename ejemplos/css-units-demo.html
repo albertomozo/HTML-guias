@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidas CSS - Ejemplo Visual</title>
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --text-color: #1f2937;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            font-size: 16px; /* Base para rem calculations */
+        }
+
+        /* HEADER - usando vh y % */
+        .header {
+            height: 15vh; /* 15% de la altura de la ventana */
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%; /* 100% del ancho disponible */
+        }
+
+        .header h1 {
+            font-size: 2.5rem; /* 2.5 veces el tamaño base (40px) */
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* px para sombras precisas */
+        }
+
+        /* CONTAINER PRINCIPAL - usando % y max-width */
+        .container {
+            max-width: 90%; /* Máximo 90% del ancho de pantalla */
+            margin: 2rem auto; /* rem para espaciado consistente */
+            padding: 0 1rem; /* rem para padding interno */
+        }
+
+        /* GRID LAYOUT - usando fr */
+        .grid-demo {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr; /* Proporciones: 1 parte, 2 partes, 1 parte */
+            gap: 1.5rem; /* rem para espaciado entre elementos */
+            margin-bottom: 3rem;
+        }
+
+        .grid-item {
+            background: var(--bg-light);
+            padding: 1.5rem; /* rem para padding interno */
+            border: 2px solid var(--border-color); /* px para bordes precisos */
+            border-radius: 8px; /* px para bordes redondeados */
+            text-align: center;
+        }
+
+        .grid-item h3 {
+            font-size: 1.25rem; /* rem para tipografía escalable */
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        /* SECCIÓN CON vw */
+        .viewport-section {
+            width: 80vw; /* 80% del ancho de la ventana */
+            margin: 2rem auto;
+            padding: 2rem;
+            background: linear-gradient(90deg, #fef3c7, #fed7aa);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .viewport-section h2 {
+            font-size: 2rem; /* rem para consistencia */
+            margin-bottom: 1rem;
+        }
+
+        /* TEXTO CON ch */
+        .text-demo {
+            max-width: 65ch; /* Máximo 65 caracteres de ancho para legibilidad */
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: white;
+            border-left: 4px solid var(--primary-color); /* px para borde preciso */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* px para sombras */
+        }
+
+        .text-demo p {
+            font-size: 1.1rem; /* rem para tipografía */
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        /* BOTONES - usando em */
+        .button-demo {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75em 1.5em; /* em se basa en el font-size del botón */
+            margin: 0.5em; /* em para espaciado consistente */
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1rem; /* Base para los em */
+            border: 2px solid transparent; /* px para bordes */
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px); /* px para movimiento preciso */
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn--large {
+            font-size: 1.25rem; /* Aumenta la base, y los em se escalan automáticamente */
+        }
+
+        .btn--small {
+            font-size: 0.875rem; /* Reduce la base, y los em se escalan automáticamente */
+        }
+
+        /* CARDS RESPONSIVAS - combinando varias medidas */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* px mínimo, fr para flexibilidad */
+            gap: 2rem; /* rem para espaciado */
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px; /* px para precisión */
+            padding: 2rem; /* rem para escalabilidad */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* px para sombras precisas */
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px); /* px para movimiento preciso */
+        }
+
+        .card h3 {
+            font-size: 1.5rem; /* rem para tipografía */
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* FOOTER - usando vh */
+        .footer {
+            height: 10vh; /* 10% de la altura de ventana */
+            background: var(--text-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 4rem; /* rem para espaciado */
+        }
+
+        /* INDICADORES VISUALES */
+        .measure-indicator {
+            position: absolute;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px; /* px para elementos pequeños */
+            font-size: 0.75rem; /* rem para consistencia */
+            border-radius: 4px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .grid-demo {
+                grid-template-columns: 1fr; /* Una columna en móviles */
+            }
+            
+            .viewport-section {
+                width: 95vw; /* Más ancho en móviles */
+            }
+            
+            .header h1 {
+                font-size: 2rem; /* Reducir en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER con vh -->
+    <header class="header">
+        <h1>Medidas CSS en Acción</h1>
+        <div class="measure-indicator" style="top: 10px; left: 10px;">15vh</div>
+    </header>
+
+    <div class="container">
+        <!-- GRID con fr -->
+        <section class="grid-demo">
+            <div class="grid-item">
+                <h3>1fr</h3>
+                <p>Primera columna ocupa 1 fracción del espacio disponible</p>
+            </div>
+            <div class="grid-item">
+                <h3>2fr</h3>
+                <p>Segunda columna ocupa 2 fracciones (el doble de espacio)</p>
+            </div>
+            <div class="grid-item">
+                <h3>1fr</h3>
+                <p>Tercera columna ocupa 1 fracción</p>
+            </div>
+        </section>
+
+        <!-- VIEWPORT con vw -->
+        <section class="viewport-section">
+            <h2>Sección con 80vw de ancho</h2>
+            <p>Esta sección siempre ocupará el 80% del ancho de tu ventana, sin importar el tamaño de pantalla.</p>
+            <div class="measure-indicator" style="top: 10px; right: 10px;">80vw</div>
+        </section>
+
+        <!-- TEXTO con ch -->
+        <section class="text-demo">
+            <h2>Texto optimizado con medida 'ch'</h2>
+            <p>Este párrafo tiene un ancho máximo de 65ch (65 caracteres), lo que garantiza una lectura cómoda. La medida 'ch' se basa en el ancho del carácter '0' de la fuente actual.</p>
+            <p>Independientemente del tamaño de tu pantalla, las líneas de texto mantendrán una longitud óptima para la lectura.</p>
+            <div class="measure-indicator" style="top: 10px; right: 10px;">max-width: 65ch</div>
+        </section>
+
+        <!-- BOTONES con em -->
+        <section class="button-demo">
+            <h2 style="margin-bottom: 2rem;">Botones usando medidas 'em'</h2>
+            <a href="#" class="btn btn--small">Botón Pequeño (0.875rem base)</a>
+            <a href="#" class="btn">Botón Normal (1rem base)</a>
+            <a href="#" class="btn btn--large">Botón Grande (1.25rem base)</a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                Los padding y margin usan 'em', por lo que se escalan automáticamente con el font-size
+            </p>
+        </section>
+
+        <!-- CARDS RESPONSIVAS -->
+        <section class="cards-container">
+            <div class="card">
+                <h3>rem (Root EM)</h3>
+                <p>Tipografía y espaciados escalables basados en el tamaño de fuente raíz. Ideal para consistencia en todo el sitio.</p>
+            </div>
+            <div class="card">
+                <h3>% (Porcentajes)</h3>
+                <p>Layouts responsivos y contenedores flexibles. Se adaptan al elemento padre para máxima flexibilidad.</p>
+            </div>
+            <div class="card">
+                <h3>px (Píxeles)</h3>
+                <p>Bordes, sombras y detalles que requieren precisión exacta. Usados para elementos que no necesitan escalar.</p>
+            </div>
+        </section>
+
+        <!-- EXPLICACIÓN FINAL -->
+        <section style="background: #f0f9ff; padding: 2rem; border-radius: 12px; margin: 3rem 0;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Resumen de Medidas Utilizadas</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 1rem 0; padding: 1rem; background: white; border-left: 4px solid #3b82f6; border-radius: 4px;">
+                    <strong>rem:</strong> Tipografías (h1, h2, p), márgenes, padding de contenedores
+                </li>
+                <li style="margin: 1rem 0; padding: 1rem; background: white; border-left: 4px solid #10b981; border-radius: 4px;">
+                    <strong>vh/vw:</strong> Altura del header (15vh), ancho de sección especial (80vw)
+                </li>
+                <li style="margin: 1rem 0; padding: 1rem; background: white; border-left: 4px solid #f59e0b; border-radius: 4px;">
+                    <strong>fr:</strong> Columnas del grid (1fr 2fr 1fr)
+                </li>
+                <li style="margin: 1rem 0; padding: 1rem; background: white; border-left: 4px solid #ef4444; border-radius: 4px;">
+                    <strong>%:</strong> Anchos de contenedores (90%, 100%), layouts responsivos
+                </li>
+                <li style="margin: 1rem 0; padding: 1rem; background: white; border-left: 4px solid #8b5cf6; border-radius: 4px;">
+                    <strong>px:</strong> Bordes (1px, 2px), sombras, border-radius, transformaciones precisas
+                </li>
+                <li style="margin: 1rem 0; padding: 1rem; background: white; border-left: 4px solid #06b6d4; border-radius: 4px;">
+                    <strong>em:</strong> Padding y margin de botones que escalan con su font-size
+                </li>
+                <li style="margin: 1rem 0; padding: 1rem; background: white; border-left: 4px solid #84cc16; border-radius: 4px;">
+                    <strong>ch:</strong> Ancho máximo del texto para legibilidad óptima (65ch)
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- FOOTER con vh -->
+    <footer class="footer">
+        <p>Footer con altura de 10vh - Siempre visible</p>
+        <div class="measure-indicator" style="bottom: 10px; left: 10px;">10vh</div>
+    </footer>
+</body>
+</html>
