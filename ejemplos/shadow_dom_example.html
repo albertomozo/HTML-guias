@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Shadow DOM</title>
+    <style>
+        /* Estilos globales que NO afectarán al Shadow DOM */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        
+        .global-style {
+            color: red;
+            font-size: 18px;
+            border: 2px solid red;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        /* Este estilo no afectará a elementos dentro del Shadow DOM */
+        p {
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demostración de Shadow DOM</h1>
+    
+    <div class="global-style">
+        <p>Este párrafo está en el DOM principal - se ve azul y en negrita</p>
+    </div>
+    
+    <!-- Nuestro componente personalizado -->
+    <mi-tarjeta 
+        titulo="Mi Componente" 
+        descripcion="Este es un ejemplo de Shadow DOM encapsulado">
+    </mi-tarjeta>
+    
+    <mi-tarjeta 
+        titulo="Otro Componente" 
+        descripcion="Los estilos están completamente aislados">
+    </mi-tarjeta>
+    
+    <div class="global-style">
+        <p>Otro párrafo en el DOM principal - también azul y en negrita</p>
+    </div>
+
+    <script>
+        class MiTarjeta extends HTMLElement {
+            constructor() {
+                super();
+                
+                // Crear Shadow DOM
+                this.attachShadow({ mode: 'open' });
+                
+                // Obtener atributos
+                const titulo = this.getAttribute('titulo') || 'Sin título';
+                const descripcion = this.getAttribute('descripcion') || 'Sin descripción';
+                
+                // Crear el contenido del Shadow DOM
+                this.shadowRoot.innerHTML = `
+                    <style>
+                        /* Estilos encapsulados - solo afectan a este componente */
+                        :host {
+                            display: block;
+                            margin: 20px 0;
+                        }
+                        
+                        .tarjeta {
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            border-radius: 12px;
+                            padding: 20px;
+                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                            color: white;
+                            transition: transform 0.3s ease;
+                        }
+                        
+                        .tarjeta:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                        }
+                        
+                        .titulo {
+                            font-size: 1.5em;
+                            margin: 0 0 10px 0;
+                            font-weight: bold;
+                        }
+                        
+                        .descripcion {
+                            margin: 0;
+                            opacity: 0.9;
+                            line-height: 1.4;
+                        }
+                        
+                        /* Estos estilos para 'p' NO afectan al DOM principal */
+                        p {
+                            color: white;
+                            font-weight: normal;
+                        }
+                        
+                        .boton {
+                            background: rgba(255, 255, 255, 0.2);
+                            border: 1px solid rgba(255, 255, 255, 0.3);
+                            color: white;
+                            padding: 8px 16px;
+                            border-radius: 6px;
+                            margin-top: 15px;
+                            cursor: pointer;
+                            transition: background 0.3s ease;
+                        }
+                        
+                        .boton:hover {
+                            background: rgba(255, 255, 255, 0.3);
+                        }
+                    </style>
+                    
+                    <div class="tarjeta">
+                        <h2 class="titulo">${titulo}</h2>
+                        <p class="descripcion">${descripcion}</p>
+                        <button class="boton" onclick="alert('¡Funciona desde el Shadow DOM!')">
+                            Interactuar
+                        </button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Registrar el componente personalizado
+        customElements.define('mi-tarjeta', MiTarjeta);
+        
+        // Demostración de cómo acceder al Shadow DOM
+        setTimeout(() => {
+            const componente = document.querySelector('mi-tarjeta');
+            console.log('Elemento principal:', componente);
+            console.log('Shadow Root:', componente.shadowRoot);
+            console.log('Contenido del Shadow DOM:', componente.shadowRoot.innerHTML);
+        }, 1000);
+    </script>
+</body>
+</html>
