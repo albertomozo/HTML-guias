@@ -10,6 +10,8 @@ Guias rápidas para ver conceptos de HTML.
 
 [colores](./guias/colores.md)
 
+[variables CSS](./guias/CSS_variables.md)
+
 
 
 

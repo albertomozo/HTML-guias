@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Guía de Variables CSS</title>
+  <style>
+    :root {
+      --main-color: #007bff;
+      --spacing: 1.5rem;
+      --border1 : 1px solid #ccc;
+    }
+    body {
+      background-color: var(--main-color);
+      padding: var(--spacing);
+    }
+    .card {
+      --card-bg: #f8f9fa;
+      background-color: var(--card-bg);
+      margin-bottom: var(--spacing);
+    }
+    .card-content {
+      padding: var(--spacing);
+      color: var(--main-color);
+      border: var(--border1);
+      border-radius: 0.25rem;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    ¡Hola! Este es un ejemplo de uso de variables CSS.
+    <div class="card-content">
+      Puedes reutilizar variables en diferentes partes de tu CSS.
+    </div>
+  </div>
+    
+</body>
+</html>
