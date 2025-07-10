@@ -1,8 +1,4 @@
-¡Excelente idea! Los colores son una parte fundamental del diseño web y una buena explicación es crucial. Aquí tienes una guía rápida y sencilla para que tus alumnos noveles entiendan cómo se manejan los colores en diseño web.
-
----
-
-## Guía Rápida para Entender los Colores en Diseño Web
+# Guía Rápida para Entender los Colores en Diseño Web
 
 Los colores son una de las primeras cosas que vemos en una página web. Nos ayudan a crear una atmósfera, a resaltar información importante y a hacer que el sitio sea agradable a la vista. En diseño web, no usamos "rojo" o "azul" simplemente, sino que tenemos formas más precisas de decirle al navegador qué color queremos.
 
