@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Icono en matriz de píxeles</title>
+  <style>
+    /* Opcional: centrar el contenido y darle un fondo claro */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    #resultado {
+      /* Para que los bloques estén juntos */
+      line-height: 0;
+      background: white;
+      padding: 10px;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="resultado"></div>
+
+  <script>
+    // Matriz que representa un icono (carita feliz 5x5)
+    let icono = [
+      [1, 1, 1, 1, 1],
+      [1, 0, 0, 0, 1],
+      [1, 0, 1, 0, 1],
+      [1, 0, 0, 0, 1],
+      [0, 1, 1, 1, 0]
+    ];
+
+    let resultado = "<div>";
+
+    for (let i = 0; i < icono.length; i++) {
+      for (let j = 0; j < icono[i].length; j++) {
+        let color = icono[i][j] === 1 ? "#000" : "#fff"; // Negro para 1, blanco para 0
+        resultado += "<span style='display:inline-block;width:20px;height:20px;background:" + color + ";border:1px solid #ccc;'></span>";
+      }
+      resultado += "<br>";
+    }
+
+    resultado += "</div>";
+
+    document.getElementById("resultado").innerHTML = resultado;
+  </script>
+
+</body>
+</html>
