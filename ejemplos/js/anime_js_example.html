@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo anime.js</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #ff6b6b;
+            margin: 20px auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .circle {
+            width: 80px;
+            height: 80px;
+            background: #4ecdc4;
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .text-demo {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+            opacity: 0;
+        }
+
+        .button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .stagger-demo {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .stagger-item {
+            width: 30px;
+            height: 30px;
+            background: #ff9ff3;
+            border-radius: 50%;
+            transform: scale(0);
+        }
+
+        .controls {
+            margin-top: 30px;
+        }
+
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .demo-section h3 {
+            color: #555;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Anime.js - Ejemplos Paso a Paso</h1>
+        
+        <!-- Ejemplo 1: Animación básica -->
+        <div class="demo-section">
+            <h3>1. Animación Básica - Movimiento y Rotación</h3>
+            <div class="box" id="box1">CAJA</div>
+            <button class="button" onclick="animateBox()">Animar Caja</button>
+        </div>
+
+        <!-- Ejemplo 2: Animación con escalado -->
+        <div class="demo-section">
+            <h3>2. Escalado y Color</h3>
+            <div class="circle" id="circle1"></div>
+            <button class="button" onclick="animateCircle()">Animar Círculo</button>
+        </div>
+
+        <!-- Ejemplo 3: Animación de texto -->
+        <div class="demo-section">
+            <h3>3. Animación de Texto</h3>
+            <div class="text-demo" id="text1">¡Hola desde anime.js!</div>
+            <button class="button" onclick="animateText()">Mostrar Texto</button>
+        </div>
+
+        <!-- Ejemplo 4: Animación escalonada -->
+        <div class="demo-section">
+            <h3>4. Animación Escalonada (Stagger)</h3>
+            <div class="stagger-demo">
+                <div class="stagger-item"></div>
+                <div class="stagger-item"></div>
+                <div class="stagger-item"></div>
+                <div class="stagger-item"></div>
+                <div class="stagger-item"></div>
+                <div class="stagger-item"></div>
+            </div>
+            <button class="button" onclick="animateStagger()">Animar Grupo</button>
+        </div>
+
+        <!-- Ejemplo 5: Animación en línea de tiempo -->
+        <div class="demo-section">
+            <h3>5. Timeline - Secuencia de Animaciones</h3>
+            <div class="box" id="box2">SECUENCIA</div>
+            <button class="button" onclick="animateTimeline()">Ejecutar Timeline</button>
+        </div>
+
+        <div class="controls">
+            <button class="button" onclick="resetAll()">🔄 Reiniciar Todo</button>
+        </div>
+    </div>
+
+    <!-- CDN de anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <script>
+        // Ejemplo 1: Animación básica
+        function animateBox() {
+            anime({
+                targets: '#box1',
+                translateX: 200,
+                rotate: '360deg',
+                duration: 2000,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                loop: 1
+            });
+        }
+
+        // Ejemplo 2: Escalado y cambio de color
+        function animateCircle() {
+            anime({
+                targets: '#circle1',
+                scale: [1, 1.5, 1],
+                backgroundColor: ['#4ecdc4', '#ff6b6b', '#4ecdc4'],
+                duration: 3000,
+                easing: 'easeInOutElastic(1, .8)'
+            });
+        }
+
+        // Ejemplo 3: Animación de texto
+        function animateText() {
+            anime({
+                targets: '#text1',
+                opacity: [0, 1],
+                translateY: [-30, 0],
+                scale: [0.8, 1],
+                duration: 1500,
+                easing: 'easeOutBounce'
+            });
+        }
+
+        // Ejemplo 4: Animación escalonada
+        function animateStagger() {
+            anime({
+                targets: '.stagger-item',
+                scale: [0, 1],
+                duration: 600,
+                delay: anime.stagger(100), // 100ms de retraso entre cada elemento
+                easing: 'easeOutElastic(1, .8)',
+                complete: function() {
+                    // Animación de salida después de un breve retraso
+                    setTimeout(() => {
+                        anime({
+                            targets: '.stagger-item',
+                            scale: 0,
+                            duration: 400,
+                            delay: anime.stagger(50, {from: 'last'}),
+                            easing: 'easeInBack'
+                        });
+                    }, 1000);
+                }
+            });
+        }
+
+        // Ejemplo 5: Timeline - Secuencia de animaciones
+        function animateTimeline() {
+            const tl = anime.timeline({
+                easing: 'easeOutExpo',
+                duration: 750
+            });
+
+            tl.add({
+                targets: '#box2',
+                translateX: 150,
+                backgroundColor: '#ff6b6b'
+            })
+            .add({
+                targets: '#box2',
+                rotate: 180,
+                backgroundColor: '#4ecdc4'
+            })
+            .add({
+                targets: '#box2',
+                translateX: 0,
+                rotate: 360,
+                backgroundColor: '#ff9ff3'
+            })
+            .add({
+                targets: '#box2',
+                scale: [1, 1.2, 1],
+                backgroundColor: '#ff6b6b'
+            });
+        }
+
+        // Función para reiniciar todos los elementos
+        function resetAll() {
+            anime({
+                targets: '.box, .circle, .text-demo, .stagger-item',
+                translateX: 0,
+                translateY: 0,
+                rotate: 0,
+                scale: 1,
+                opacity: function(el) {
+                    return el.classList.contains('text-demo') ? 0 : 1;
+                },
+                backgroundColor: function(el) {
+                    if (el.classList.contains('box')) return '#ff6b6b';
+                    if (el.classList.contains('circle')) return '#4ecdc4';
+                    if (el.classList.contains('stagger-item')) return '#ff9ff3';
+                    return '';
+                },
+                duration: 500,
+                easing: 'easeInOutQuad'
+            });
+        }
+
+        // Animación de entrada al cargar la página
+        window.addEventListener('load', function() {
+            anime({
+                targets: '.container',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                duration: 1000,
+                easing: 'easeOutQuad'
+            });
+        });
+    </script>
+</body>
+</html>

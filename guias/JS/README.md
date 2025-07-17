@@ -1,83 +1,83 @@
 # Guías Rápidas de JavaScript
 
-Este directorio contiene guías prácticas y resúmenes (cheatsheets) de los conceptos fundamentales de JavaScript, ordenados para un aprendizaje progresivo.
+Este directorio contiene guías y resúmenes prácticos de los principales conceptos de JavaScript, ordenados de forma lógica para facilitar el aprendizaje progresivo.
 
 ---
 
 ## Índice de Guías
 
-1. **Sintaxis Básica**
-   - [js-variables-guide.md](js-variables-guide.md)  
-     *Variables, tipos de datos, operadores, comentarios, estructura básica de un script.*
+### 1. Fundamentos y Sintaxis
 
-        JavaScript tiene **3 formas** de declarar variables:
+- [js-variables-guide.md](js-variables-guide.md)  
+  *Declaración de variables, tipos de datos, operadores y estructura básica de un script.*
+- [js_data_types_guide.md](js_data_types_guide.md)  
+  *Tipos de datos primitivos y no primitivos en JavaScript.*
+- [js_tipos_primitivos_objetos.md](js_tipos_primitivos_objetos.md)  
+  *Diferencias entre tipos primitivos y objetos.*
+- [JS-quotes-guide.md](JS-quotes-guide.md)  
+  *Uso de comillas simples, dobles y template literals.*
 
-        | Palabra clave | Scope | Reasignación | Redeclaración | ¿Cuándo usar? |
-        |---------------|-------|--------------|---------------|---------------|
-        | `var` | Función | ✅ Sí | ✅ Sí | ❌ **No usar** (obsoleto) |
-        | `let` | Bloque | ✅ Sí | ❌ No | ✅ **Variables que cambian** |
-        | `const` | Bloque | ❌ No | ❌ No | ✅ **Variables constantes** |
+### 2. Control de Flujo
 
-    - [js-quote-guide.md](js-quote-guide.md)  
-     *Las comillas*
+- [js-conditionals-guide.md](js-conditionals-guide.md)  
+  *Sentencias condicionales: if, else, switch y operadores lógicos.*
+- [js-loops-guide.md](js-loops-guide.md)  
+  *Bucles: for, while, do...while, for...in, for...of, break y continue.*
 
-        | Tipo | Símbolo | Mejor uso | Superpoderes |
-        |------|---------|-----------|--------------|
-        | Simples | `'` | Strings simples | Ninguno especial |
-        | Dobles | `"` | Strings simples, JSON | Ninguno especial |
-        | Template | `` ` `` | Variables, multilínea | ${interpolación}, saltos de línea |
+### 3. Funciones
 
-        **Regla de oro**: Si tu string tiene variables o necesita saltos de línea, usa template literals. Para todo lo demás, usa comillas simples o dobles según tu preferencia.
+- [js-functions-guide.md](js-functions-guide.md)  
+  *Declaración, expresión, parámetros, retorno y arrow functions.*
 
-2. **Condicionales**
-   - [js-conditionals-guide.md](js-conditionals-guide.md)  
-     *if, else, else if, switch, operadores lógicos y de comparación.*
+### 4. Arrays
 
-        | Sentencia | Uso | Cuándo usarla |
-        |-----------|-----|---------------|
-        | `if` | Condición simple | Una sola condición |
-        | `if...else` | Dos opciones | Verdadero o falso |
-        | `if...else if...else` | Múltiples condiciones | Varias opciones |
-        | `switch` | Comparar un valor | Muchas opciones específicas |
-        | Operador ternario `?:` | Condición inline | Asignaciones simples |
-        | Operadores lógicos | Evaluación corta | Validaciones rápidas |
+- [js-arrays-guide.md](js-arrays-guide.md)  
+  *Creación, métodos principales, recorrido y manipulación de arrays.*
+- [js_arrays_guide_contenido_dinamico.md](js_arrays_guide_contenido_dinamico.md)  
+  *Cómo mostrar contenido dinámico en HTML a partir de arrays.*
+- [js_arrays_ejercicios.md](js_arrays_ejercicios.md)  
+  *Ejercicios prácticos de arrays y contenido dinámico.*
+- [JS_arrays_carrito.md](JS_arrays_carrito.md)  
+  *Ejemplo de carrito de compra usando arrays.*
 
-3. **Bucles**
-   - [js-loops-guide.md](js-loops-guide.md)  
-     *for, while, do...while, break y continue.*
+### 5. Objetos y Clases
 
-        - **`for`**: Ideal para contadores y arrays (conoces las iteraciones)
-        - **`while`**: Perfecto cuando no sabes cuántas veces (condición dinámica)
-        - **`do...while`**: Garantiza al menos una ejecución
-        - **`for...in`**: Para objetos (propiedades)
-        - **`for...of`**: Para arrays y strings (elementos)
-        - **Siempre modifica la condición** en `while` para evitar bucles infinitos
-        - **Usa `break`** para salir temprano
-        - **Usa `continue`** para saltar iteraciones
-        - **Cuidado con el scope** - usa `let` en lugar de `var`
+- [js-objects-guide.md](js-objects-guide.md)  
+  *Propiedades, métodos, this y manipulación de objetos.*
+- [js-objeto__Date__.md](js-objeto__Date__.md)  
+  *Uso del objeto Date para fechas y horas.*
+- [js-objeto__String__.md](js-objeto__String__.md)  
+  *Métodos y propiedades del objeto String.*
+- [JS-objeto-math.md](JS-objeto-math.md)  
+  *Operaciones matemáticas con el objeto Math.*
 
-<!-- 4. **Funciones**
-   - [js-functions-guide.md](js-functions-guide.md)  
-     *Declaración, expresión, parámetros, retorno, arrow functions.*
+### 6. DOM y Eventos
 
-5. **Arrays**
-   - [js-arrays-guide.md](js-arrays-guide.md)  
-     *Creación, métodos principales, recorrido, manipulación.*
+- [js__queryselectAll__usos.md](js__queryselectAll__usos.md)  
+  *Uso de querySelectorAll y ejemplos prácticos.*
+- [js_classList_guide.md](js_classList_guide.md)  
+  *Manipulación de clases CSS con classList.*
+- [js__setTimeout__.md](js__setTimeout__.md)  
+  *Uso de setTimeout para temporizadores.*
+- [js__navigator_screen_location.md](js__navigator_screen_location.md)  
+  *Propiedades útiles del navegador, pantalla y localización.*
 
-6. **Objetos**
-   - [js-objects-guide.md](js-objects-guide.md)  
-     *Propiedades, métodos, this, acceso y modificación.*
+### 7. JSON
 
-7. **DOM y Eventos**
-   - [js-dom-guide.md](js-dom-guide.md)  
-     *Selección de elementos, modificación, eventos básicos.*
+- [JSON__intro.md](JSON__intro.md)  
+  *Introducción a JSON y su uso en JavaScript.*
+- [JSON_curso_00.md](JSON_curso_00.md)  
+  *Ejercicios y ejemplos prácticos con JSON.*
 
-8. **Extras y Buenas Prácticas**
-   - [js-extras-guide.md](js-extras-guide.md)  
-     *Plantillas literales, destructuring, spread/rest, buenas prácticas.*
+### 8. Otros
+
+- [JS__cliente.md](JS__cliente.md)  
+  *Guía sobre el objeto cliente y su uso en JavaScript.*
+- [js__lib_anime.md](js__lib_anime.md)
+  *USando la lib anime.js*
 
 ---
 
-Cada guía incluye ejemplos y un resumen tipo cheatsheet para consulta rápida.
+Cada guía incluye ejemplos y resúmenes tipo cheatsheet para consulta rápida.
 
-¡Feliz aprendizaje! -->
+¡Feliz

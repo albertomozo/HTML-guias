@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select dependiente: Provincias y Municipios</title>
+</head>
+<body>
+  <h2>Selecciona provincia y municipio</h2>
+
+  <label for="provincias">Provincia:</label>
+  <select id="provincias">
+    <option value="">-- Selecciona provincia --</option>
+  </select>
+
+  <br><br>
+
+  <label for="municipios">Municipio:</label>
+  <select id="municipios" disabled>
+    <option value="">-- Selecciona municipio --</option>
+  </select>
+
+  <script>
+    // URL del JSON con regiones, provincias y municipios
+    const jsonUrl = "https://raw.githubusercontent.com/frontid/ComunidadesProvinciasPoblaciones/master/arbol.json";
+
+    // Referencias a los select
+    const selectProvincias = document.getElementById('provincias');
+    const selectMunicipios = document.getElementById('municipios');
+
+    // Datos cargados
+    let provinciasList = [];
+
+    fetch(jsonUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Construir lista de provincias con sus municipios
+        data.forEach(region => {
+          if (Array.isArray(region.provinces)) {
+            region.provinces.forEach(prov => {
+              provinciasList.push({
+                label: prov.label,
+                code: prov.code,
+                municipios: Array.isArray(prov.towns)
+                  ? prov.towns.map(mun => mun.label)
+                  : []
+              });
+            });
+          }
+        });
+
+        // Ordenar provincias alfabéticamente
+        provinciasList.sort((a, b) => a.label.localeCompare(b.label, 'es'));
+
+        // Rellenar el select de provincias
+        provinciasList.forEach(prov => {
+          const option = document.createElement('option');
+          option.value = prov.code;
+          option.textContent = prov.label;
+          selectProvincias.appendChild(option);
+        });
+      })
+      .catch(error => {
+        console.error("Error al cargar el JSON:", error);
+      });
+
+    // Evento cuando cambia la provincia
+    selectProvincias.addEventListener('change', function () {
+      const provinciaSeleccionada = provinciasList.find(p => p.code === this.value);
+
+      // Reset municipios
+      selectMunicipios.innerHTML = '<option value="">-- Selecciona municipio --</option>';
+
+      if (provinciaSeleccionada && provinciaSeleccionada.municipios.length > 0) {
+        // Ordenar municipios alfabéticamente
+        const municipiosOrdenados = provinciaSeleccionada.municipios.sort((a, b) => a.localeCompare(b, 'es'));
+
+        // Rellenar municipios
+        municipiosOrdenados.forEach(mun => {
+          const option = document.createElement('option');
+          option.value = mun;
+          option.textContent = mun;
+          selectMunicipios.appendChild(option);
+        });
+
+        selectMunicipios.disabled = false;
+      } else {
+        selectMunicipios.disabled = true;
+      }
+    });
+    //PERPLEXITY
+</script>
+</body>
+</html>
+

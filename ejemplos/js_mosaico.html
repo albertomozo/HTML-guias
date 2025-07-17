@@ -30,20 +30,23 @@
   <div id="resultado"></div>
 
   <script>
+    resul = document.getElementById('resultado');
     // Matriz que representa un icono (carita feliz 5x5)
     let icono = [
       [1, 1, 1, 1, 1],
-      [1, 0, 0, 0, 1],
-      [1, 0, 1, 0, 1],
-      [1, 0, 0, 0, 1],
-      [0, 1, 1, 1, 0]
+      [0, 0, 1, 0, 0],
+      [0, 0, 1, 0, 0],
+      [0, 0, 1, 0, 0],
+      [0, 0, 1, 0, 0]
     ];
 
     let resultado = "<div>";
 
     for (let i = 0; i < icono.length; i++) {
       for (let j = 0; j < icono[i].length; j++) {
-        let color = icono[i][j] === 1 ? "#000" : "#fff"; // Negro para 1, blanco para 0
+        //let color = icono[i][j] === 1 ? "#000" : "#fff"; // Negro para 1, blanco para 0
+        let color;
+        if (icono[i][j]===1){color = "#000";} else {color = "#fff";}
         resultado += "<span style='display:inline-block;width:20px;height:20px;background:" + color + ";border:1px solid #ccc;'></span>";
       }
       resultado += "<br>";

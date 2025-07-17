@@ -5,7 +5,7 @@ Al recorrer  un array para mostrar su contenido de forma visual usando `innerHTM
 
 ### 1. **Inicializar una variable con la etiqueta contenedora**
 
-Antes de empezar el bucle, crea una variable (por ejemplo, llamada `resultado`) que contenga la etiqueta de apertura del elemento HTML que vas a usar como contenedor. Puede ser `<ul>`, `<table>`, `<select>`, etc.
+Antes de empezar el bucle, crea una variable (por ejemplo, llamada `resultado`) que contenga la etiqueta de apertura del elemento HTML que vas a usar como contenedor. Puede ser `<ul>`, `<table>`, `<select>`,`<section>` etc.
 
 ```javascript
 let resultado = "<ul>";
@@ -22,6 +22,14 @@ for (let i = 0; i < frutas.length; i++) {
   resultado += "<li>" + frutas[i] + "</li>";
 }
 ```
+Dentro de los bucles la etiqueta HTML , deberá corresponder con la etiqueta padre
+
+| Contenedor    | Elemento hijo     |
+|---------------|-------------------|
+| `<ul>`        | `<li>`            |
+| `<select>`    | `<option>`        |
+| `<table>`     | `<tr>`, `<td>`    |
+| `<section>`   | `<article>`       |
 
 
 ### 3. **Cerrar la etiqueta contenedora**
