@@ -93,4 +93,167 @@ const dominio = location.hostname;
 const esSeguro = location.protocol === 'https:';
 ```
 
-Estos objetos son fundamentales para crear aplicaciones web que se adapten al entorno del usuario y manejen la navegación de forma inteligente.
+
+## Ejercicios prácticos con **navigator**
+
+1. **Detectar el navegador y su versión**
+
+```js
+alert("Navegador: " + navigator.appName + "\nVersión: " + navigator.appVersion);
+```
+
+2. **Mostrar información del sistema**
+
+```js
+const info = `
+  <p>Plataforma: ${navigator.platform}</p>
+  <p>Cookies permitidas: ${navigator.cookieEnabled}</p>
+  <p>User-Agent: ${navigator.userAgent}</p>
+`;
+document.body.innerHTML += info;
+```
+
+3. **Redirigir según navegador**
+
+```js
+if (navigator.userAgent.includes("Chrome")) {
+  window.location.href = "https://www.google.com/chrome/";
+} else {
+  alert("Navegador no identificado para redirección.");
+}
+```
+
+4. **Detectar si el navegador está en línea u offline**
+
+```js
+if (navigator.onLine) {
+  alert("Estás conectado a Internet.");
+} else {
+  alert("No tienes conexión.");
+}
+```
+
+5. **Mostrar el idioma preferido del navegador**
+
+```js
+document.body.innerHTML += "<p>Idioma: " + navigator.language + "</p>";
+```
+
+6. **Listar plugins instalados (donde esté permitido)**
+
+```js
+for (let i = 0; i < navigator.plugins.length; i++) {
+  document.write(navigator.plugins[i].name + "<br>");
+}
+```
+
+7. **Detectar sistema operativo y plataforma**
+
+```js
+alert("Plataforma: " + navigator.platform);
+```
+
+
+## Ejercicios prácticos con **screen**
+
+1. **Mostrar las dimensiones de la pantalla**
+
+```js
+document.write("Anchura x Altura: " + screen.width + "x" + screen.height + "<br>");
+document.write("Disponible: " + screen.availWidth + "x" + screen.availHeight + "<br>");
+document.write("Profundidad de color: " + screen.colorDepth + "<br>");
+document.write("Resolución de color: " + screen.pixelDepth + "<br>");
+```
+
+2. **Ajustar el contenido según la resolución**
+
+```js
+if (screen.availWidth < 800) {
+  document.body.style.fontSize = "12px";
+} else {
+  document.body.style.fontSize = "16px";
+}
+```
+
+3. **Detectar si la pantalla es Full HD o mayor**
+
+```js
+if (screen.width >= 1920 && screen.height >= 1080) {
+  alert("Pantalla Full HD o superior.");
+} else {
+  alert("Pantalla de baja resolución.");
+}
+```
+
+4. **Comparar área útil y área total**
+
+```js
+document.write("Total: " + screen.width + "x" + screen.height + "<br>");
+document.write("Disponible: " + screen.availWidth + "x" + screen.availHeight + "<br>");
+```
+
+5. **Cambiar el color de fondo según la profundidad de color**
+
+```js
+if (screen.colorDepth > 24) {
+  document.body.style.background = "lightgreen";
+} else {
+  document.body.style.background = "pink";
+}
+```
+
+
+## Ejercicios prácticos con **location**
+
+1. **Mostrar información detallada de la URL**
+
+```js
+document.write("href: " + location.href + "<br>");
+document.write("protocol: " + location.protocol + "<br>");
+document.write("host: " + location.host + "<br>");
+document.write("hostname: " + location.hostname + "<br>");
+document.write("port: " + location.port + "<br>");
+document.write("pathname: " + location.pathname + "<br>");
+document.write("search: " + location.search + "<br>");
+document.write("hash: " + location.hash + "<br>");
+document.write("origin: " + location.origin + "<br>");
+```
+
+2. **Recargar la página automáticamente cada cierto tiempo**
+
+```js
+setInterval(() => location.reload(), 10000); // cada 10 segundos
+```
+
+3. **Modificar el query string de la URL**
+
+```js
+location.search = "?nuevo=valor";
+```
+
+4. **Crear enlaces dinámicos basados en propiedades de location**
+
+```js
+let enlace = document.createElement('a');
+enlace.href = location.protocol + "//" + location.host + "/nueva-pagina";
+enlace.textContent = "Ir a nueva página";
+document.body.appendChild(enlace);
+```
+
+5. **Redirección programada y mediante replace**
+
+```js
+setTimeout(() => {
+  window.location.href = "https://ejemplo.com";
+}, 3000); // redirecciona tras 3 segundos
+
+// Redirección sin poder volver atrás
+// location.replace("https://ejemplo.com/pagina-final");
+```
+
+6. **Modificar o leer el hash de la URL**
+
+```js
+location.hash = "#seccion2";
+alert("Hash actual: " + location.hash);
+```
