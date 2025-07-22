@@ -1,8 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
-
-# Podrias crearme un guia rápida para explicar los objetos en JSON
-
-Guía rápida para explicar **objetos en JSON**:
 
 ### 1. ¿Qué es un objeto en JSON?
 

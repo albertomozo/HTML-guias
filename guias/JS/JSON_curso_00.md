@@ -1,6 +1,5 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
-# Quiero explicar lso conceptos d elso json con este ejemplo
+# JSON
 
 {"curso":"IFCD0609_202402",
 "fecha inicio" : "2024-02-14",
