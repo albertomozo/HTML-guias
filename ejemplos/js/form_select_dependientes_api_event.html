@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Selector de provincias y municipios (Open Data Euskadi)</title>
+</head>
+<body>
+  <h2>Selecciona provincia y municipio</h2>
+  
+  <label for="provincias">Provincia:</label>
+  <select id="provincias">
+    <option value="">Cargando...</option>
+  </select>
+  
+  <label for="municipios">Municipio:</label>
+  <select id="municipios" disabled>
+    <option value="">Selecciona una provincia</option>
+  </select>
+  
+  <script>
+    // Referencias a los selectores
+    const provinciasSelect = document.getElementById('provincias');
+    const municipiosSelect = document.getElementById('municipios');
+    
+    // Cargar provincias al iniciar
+    fetch('https://api.euskadi.eus/culture/events/v1.0/provinces')
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+        provinciasSelect.innerHTML = '<option value="">Elige provincia</option>';
+        data.items.forEach(prov => {
+          const opt = document.createElement('option');
+          opt.value = prov.provinceId; // ID de la provincia
+          opt.textContent = prov.nameEs; // Nombre en castellano
+          provinciasSelect.appendChild(opt);
+        });
+      });
+    
+    // Cargar municipios cuando se selecciona una provincia
+    provinciasSelect.addEventListener('change', function() {
+      municipiosSelect.disabled = true;
+      municipiosSelect.innerHTML = '<option>Cargando...</option>';
+      const provId = this.value;
+      if (!provId) {
+        municipiosSelect.innerHTML = '<option>Selecciona una provincia</option>';
+        municipiosSelect.disabled = true;
+        return;
+      }
+      fetch(`https://api.euskadi.eus/culture/events/v1.0/municipalities/byProvince/${provId}?_elements=200`)
+        .then(resp => resp.json())
+        .then(data => {
+          municipiosSelect.innerHTML = '<option value="">Elige municipio</option>';
+          data.items.forEach(mun => {
+            const opt = document.createElement('option');
+            opt.value = mun.municipalityId;
+            opt.textContent = mun.nameEs;
+            municipiosSelect.appendChild(opt);
+          });
+          municipiosSelect.disabled = false;
+        });
+    });
+  </script>
+</body>
+</html>
