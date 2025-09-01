@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda</title>
+</head>
+<body>
+    <!-- Título principal de la tienda -->
+    <h1>Mi Tienda Online</h1>
+    
+    <!-- Contenedor principal para mostrar todos los productos disponibles -->
+    <div id="productos">
+        <h2>Productos Disponibles</h2>
+        
+        <!-- 
+        Cada producto está en un div con:
+        - class="producto": para identificar todos los productos
+        - data-id: identificador único del producto
+        - data-precio: precio unitario almacenado como atributo de datos
+        -->
+        <div class="producto" data-id="1" data-precio="25.99">
+            <h3>Camiseta</h3>
+            <p>Precio: €25.99</p>
+            <label>Cantidad: </label>
+            <!-- 
+            Input numérico para seleccionar cantidad:
+            - type="number": solo acepta números
+            - class="cantidad": para identificar todos los inputs de cantidad
+            - min="0": no permite números negativos
+            - value="0": valor inicial
+            - onchange="calcularTotal()": ejecuta la función cada vez que cambia el valor
+            -->
+            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
+        </div>
+        
+        <div class="producto" data-id="2" data-precio="45.50">
+            <h3>Pantalón</h3>
+            <p>Precio: €45.50</p>
+            <label>Cantidad: </label>
+            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
+        </div>
+        
+        <div class="producto" data-id="3" data-precio="89.99">
+            <h3>Zapatillas</h3>
+            <p>Precio: €89.99</p>
+            <label>Cantidad: </label>
+            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
+        </div>
+        
+        <div class="producto" data-id="4" data-precio="15.75">
+            <h3>Gorra</h3>
+            <p>Precio: €15.75</p>
+            <label>Cantidad: </label>
+            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
+        </div>
+        
+        <div class="producto" data-id="5" data-precio="35.00">
+            <h3>Sudadera</h3>
+            <p>Precio: €35.00</p>
+            <label>Cantidad: </label>
+            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
+        </div>
+    </div>
+    
+    <!-- Línea separadora visual -->
+    <hr>
+    
+    <!-- Sección del carrito de compras -->
+    <div id="carrito">
+        <h2>Resumen de Compra</h2>
+        <!-- Contenedor donde se mostrará el detalle de productos seleccionados -->
+        <div id="resumen"></div>
+        <!-- Contenedor donde se mostrará el total a pagar -->
+        <div id="total">
+            <h3>Total: €0.00</h3>
+        </div>
+        <!-- Botón para resetear todo el carrito -->
+        <button onclick="limpiarCarrito()">Limpiar Carrito</button>
+    </div>
+
+    <script>
+        /**
+         * Función principal que calcula el total de la compra
+         * Se ejecuta cada vez que se cambia la cantidad de algún producto
+         */
+        function calcularTotal() {
+            // Variable para acumular el precio total de todos los productos
+            let totalGeneral = 0;
+            
+            // Variable para construir el texto del resumen de compra
+            let resumen = '';
+            
+            // Obtener todos los elementos HTML que tienen la clase "producto"
+            // querySelector All devuelve una lista de todos los elementos que coinciden
+            const productos = document.querySelectorAll('.producto');
+            
+            // Recorrer cada producto para calcular su subtotal
+            productos.forEach(producto => {
+                // Extraer el nombre del producto desde el elemento h3
+                const nombre = producto.querySelector('h3').textContent;
+                
+                // Obtener el precio desde el atributo data-precio y convertirlo a número decimal
+                const precio = parseFloat(producto.dataset.precio);
+                
+                // Obtener la cantidad desde el input y convertirla a número entero
+                // Si el valor está vacío o no es válido, usa 0 como valor por defecto
+                const cantidad = parseInt(producto.querySelector('.cantidad').value) || 0;
+                
+                // Solo procesar productos con cantidad mayor a 0
+                if (cantidad > 0) {
+                    // Calcular el subtotal: precio unitario × cantidad
+                    const subtotal = precio * cantidad;
+                    
+                    // Sumar el subtotal al total general
+                    totalGeneral += subtotal;
+                    
+                    // Construir la línea del resumen para este producto
+                    // toFixed(2) formatea el número con 2 decimales
+                    resumen += `<p>${nombre} - Cantidad: ${cantidad} - Subtotal: €${subtotal.toFixed(2)}</p>`;
+                }
+            });
+            
+            // Mostrar el resumen en la página
+            const resumenDiv = document.getElementById('resumen');
+            
+            // Si no hay productos seleccionados, mostrar mensaje informativo
+            if (resumen === '') {
+                resumenDiv.innerHTML = '<p>No hay productos seleccionados</p>';
+            } else {
+                // Si hay productos, mostrar el resumen completo
+                resumenDiv.innerHTML = resumen;
+            }
+            
+            // Actualizar el total en la página con formato de 2 decimales
+            document.getElementById('total').innerHTML = `<h3>Total: €${totalGeneral.toFixed(2)}</h3>`;
+        }
+        
+        /**
+         * Función para limpiar todo el carrito de compras
+         * Resetea todas las cantidades a cero y recalcula el total
+         */
+        function limpiarCarrito() {
+            // Obtener todos los inputs de cantidad (todos tienen class="cantidad")
+            const cantidades = document.querySelectorAll('.cantidad');
+            
+            // Recorrer cada input y establecer su valor a 0
+            cantidades.forEach(input => {
+                input.value = 0;
+            });
+            
+            // Recalcular el total después de limpiar
+            // Esto actualizará tanto el resumen como el total mostrado
+            calcularTotal();
+        }
+        
+        // Ejecutar calcularTotal() cuando se carga la página
+        // Esto inicializa la visualización con valores por defecto (todo en 0)
+        calcularTotal();
+    </script>
+</body>
+</html>

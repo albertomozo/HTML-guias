@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inyección XSS con innerHTML</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        label, input, button { margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+    <h2>Ejemplo de Inyección con innerHTML</h2>
+    
+    <form id="comentarioForm">
+        <label for="comentario">Comentario:</label><br>
+        <input type="text" id="comentario" name="comentario" size="40"><br>
+        <button type="submit">Enviar</button>
+    </form>
+    
+    <div id="comentarios"></div>
+
+    <script>
+        const formulario = document.getElementById('comentarioForm');
+        const areaComentarios = document.getElementById('comentarios');
+
+        formulario.addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            const texto = document.getElementById('comentario').value;
+
+            // Peligroso: inserta el comentario usando innerHTML (vulnerable a XSS)
+            areaComentarios.innerHTML += `<p>${texto}</p>`;
+        });
+    </script>
+</body>
+</html>

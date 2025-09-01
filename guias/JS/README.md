@@ -69,13 +69,21 @@ Este directorio contiene guías y resúmenes prácticos de los principales conce
 - [JSON_curso_00.md](JSON_curso_00.md)  
   *Ejercicios y ejemplos prácticos con JSON.*
 
-### 8. APIs de JS
+### 8. DATASET
+
+- [js_dataset.md](js_dataset.md)  
+  *Introducción a DATASET.*
+- [js_dataset_vs_propiedadesJS.md](js_dataset_vs_propiedadesJS.md)  
+  *dataset vs propiedades JS.*
+
+
+### 9. APIs de JS
 
 - [API__permisos.md](js__API_permisos.md)  
   *las API de JS y los permisos del navegador.*
 
 
-### 9. Otros
+### 10. Otros
 
 - [JS__cliente.md](JS__cliente.md)  
   *Guía sobre el objeto cliente y su uso en JavaScript.*

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: ¿Dónde Vive mi Web?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Plan Narrative: The infographic tells a story, starting with a simple analogy of what a server is, moving to the types of websites (static vs. dynamic), then explaining where to host them (shared, VPS, cloud), providing beginners with modern tools, and finally summarizing key terms. This logical flow guides a novice user from concept to practical application. -->
+    <!-- Visualization Choices: 
+        1. Client-Server Flow -> Flow Chart (HTML/CSS) -> Goal: Organize -> Best for showing a process without using prohibited SVG/Mermaid.
+        2. Static vs. Dynamic Split -> Donut Chart (Chart.js) -> Goal: Inform/Compare -> Excellent for showing a simple, clear proportion.
+        3. Hosting Options Comparison -> Bar Chart (Chart.js) -> Goal: Compare -> Ideal for comparing multiple items across several criteria (cost, control, scalability).
+        4. Tools & Terms -> Styled Cards (HTML/CSS) -> Goal: Organize -> Clean, modular way to present distinct pieces of information.
+    -->
+    <!-- Palette: Energetic & Playful -->
+    <!-- Confirmation: NEITHER Mermaid JS NOR SVG were used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-[#073B4C]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#118AB2] mb-2">¿Dónde Vive mi Web?</h1>
+            <p class="text-lg md:text-xl text-gray-600">Una guía para principiantes sobre servidores y alojamiento web.</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="analogy" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#06D6A0]">Del Navegador a Internet: ¿Cómo Funciona?</h2>
+                <p class="text-center max-w-3xl mx-auto mb-8">Imagina que quieres visitar una web. El proceso es muy parecido a pedir comida en un restaurante. Esta analogía te ayudará a entender los componentes clave.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-2 text-center">
+                    <div class="flex flex-col items-center p-4">
+                        <div class="text-5xl mb-2">💻</div>
+                        <h3 class="font-bold">1. El Cliente</h3>
+                        <p class="text-sm">Tú, con tu navegador, pides una página web.</p>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-300 transform rotate-90 md:rotate-0">➔</div>
+                    <div class="flex flex-col items-center p-4">
+                        <div class="text-5xl mb-2">🍽️</div>
+                        <h3 class="font-bold">2. El Camarero</h3>
+                        <p class="text-sm">El **servidor web** (software como Apache o Nginx) recibe tu pedido.</p>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-300 transform rotate-90 md:rotate-0">➔</div>
+                    <div class="flex flex-col items-center p-4">
+                        <div class="text-5xl mb-2">🏬</div>
+                        <h3 class="font-bold">3. La Cocina</h3>
+                        <p class="text-sm">El **servidor físico** (el ordenador) busca los archivos de la web.</p>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-300 transform rotate-90 md:rotate-0">➔</div>
+                     <div class="flex flex-col items-center p-4">
+                        <div class="text-5xl mb-2">📄</div>
+                        <h3 class="font-bold">4. La Respuesta</h3>
+                        <p class="text-sm">El servidor te envía la página para que la veas en tu pantalla.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="types" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#FF6B6B]">Páginas Estáticas vs. Dinámicas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center md:text-left">
+                        <p class="mb-4">Las webs no son todas iguales. Algunas son como un folleto que nunca cambia (estáticas), mientras que otras se personalizan para cada visitante (dinámicas), como tu perfil de una red social.</p>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-bold text-lg">Páginas Estáticas</h3>
+                                <p class="text-sm">El contenido es fijo. Ideal para portafolios, blogs sencillos o páginas de presentación. Usan HTML, CSS y JavaScript.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Páginas Dinámicas</h3>
+                                <p class="text-sm">El contenido cambia según el usuario o la interacción. Necesitan un lenguaje de programación (como PHP, Node.js) y una base de datos. Perfectas para tiendas online o redes sociales.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-center font-semibold mb-2">Distribución Típica de Webs</p>
+                        <div class="chart-container">
+                            <canvas id="staticDynamicChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hosting" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#FFD166]">¿Dónde Alojar tu Web?</h2>
+                <p class="text-center max-w-3xl mx-auto mb-8">Elegir un alojamiento es como decidir dónde vas a vivir. Hay opciones para todos los presupuestos y necesidades, desde un piso compartido hasta una mansión en la nube.</p>
+                <div class="chart-container mx-auto" style="max-width: 800px; height: 400px;">
+                    <canvas id="hostingChart"></canvas>
+                </div>
+                 <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-sm">
+                    <div>
+                        <h4 class="font-bold">Alojamiento Compartido</h4>
+                        <p>Económico y fácil. Compartes recursos. Ideal para empezar.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">VPS (Servidor Privado Virtual)</h4>
+                        <p>Más control y recursos dedicados. Para proyectos que crecen.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Cloud (Nube)</h4>
+                        <p>Máxima flexibilidad y escalabilidad. Pagas por lo que usas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tools" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#118AB2]">Herramientas para Empezar a Publicar</h2>
+                <p class="text-center max-w-3xl mx-auto mb-8">Hoy en día, publicar una web es más fácil que nunca. Estas plataformas te permiten desplegar tus proyectos directamente desde tu código, a menudo con generosos planes gratuitos.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-2">Para Sitios Estáticos</h3>
+                        <p class="text-sm mb-4">Perfectas para tu portafolio, blog o web de presentación. Se conectan a tu repositorio de GitHub y publican tu web automáticamente con cada cambio.</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Vercel:</strong> Muy popular para frameworks de JavaScript modernos.</li>
+                            <li><strong>Netlify:</strong> Potente y con muchas funcionalidades integradas.</li>
+                        </ul>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-2">Para Sitios Dinámicos</h3>
+                        <p class="text-sm mb-4">Cuando necesitas una base de datos y lógica de servidor, estas plataformas (PaaS) simplifican la gestión de la infraestructura.</p>
+                         <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Heroku:</strong> Un clásico, soporta muchos lenguajes como Node.js, Python y Ruby.</li>
+                            <li><strong>Render:</strong> Una alternativa moderna con despliegues sencillos y predecibles.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="glossary">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#073B4C]">Glosario de Términos Clave</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-lg mb-2">HTTP/HTTPS</h3>
+                        <p class="text-sm">El "idioma" que usan los navegadores para pedir webs. HTTPS es la versión segura y cifrada, ¡imprescindible hoy en día!</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-lg mb-2">Dominio</h3>
+                        <p class="text-sm">El nombre único de tu web, como `google.com`. Es la dirección fácil de recordar para los humanos.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-lg mb-2">Panel de Control</h3>
+                        <p class="text-sm">Una interfaz gráfica (como cPanel o Plesk) que te da tu proveedor de hosting para gestionar tu servidor, correos y dominios.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-sm text-gray-500">&copy; 2025 Guía de Servidores Web. El viaje de tu web empieza aquí.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        function wrapLabels(label) {
+            const maxLength = 16;
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const staticDynamicCtx = document.getElementById('staticDynamicChart').getContext('2d');
+            new Chart(staticDynamicCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Dinámicas', 'Estáticas'],
+                    datasets: [{
+                        label: 'Tipo de Web',
+                        data: [65, 35],
+                        backgroundColor: ['#118AB2', '#06D6A0'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        ...tooltipTitleCallback.plugins,
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+
+            const hostingCtx = document.getElementById('hostingChart').getContext('2d');
+            const hostingLabels = ['Costo', 'Control', 'Escalabilidad'];
+            new Chart(hostingCtx, {
+                type: 'bar',
+                data: {
+                    labels: hostingLabels.map(wrapLabels),
+                    datasets: [
+                        {
+                            label: 'Alojamiento Compartido',
+                            data: [9, 3, 4],
+                            backgroundColor: '#06D6A0',
+                            borderColor: '#06D6A0',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'VPS',
+                            data: [6, 7, 7],
+                            backgroundColor: '#FFD166',
+                            borderColor: '#FFD166',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Cloud',
+                            data: [4, 9, 10],
+                            backgroundColor: '#FF6B6B',
+                            borderColor: '#FF6B6B',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            ticks: {
+                                stepSize: 1
+                            },
+                            title: {
+                                display: true,
+                                text: 'Puntuación (1-10)'
+                            }
+                        }
+                    },
+                    plugins: {
+                         ...tooltipTitleCallback.plugins,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Comparativa de Tipos de Alojamiento'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
