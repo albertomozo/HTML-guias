@@ -1,6 +1,6 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
-# Ejemplos de funcionalidades típicas cojn elemntos seleccionados con queryselectall de JS
+
+# queryselectall de JS
 
 Al usar **querySelectorAll** en JavaScript, se obtienen *todas las coincidencias* con un selector CSS, permitiendo manipular múltiples elementos del DOM de manera eficiente y flexible. Aquí tienes ejemplos de funcionalidades típicas y patrones de uso:
 
