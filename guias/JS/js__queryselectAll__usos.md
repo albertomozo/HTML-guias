@@ -74,6 +74,10 @@ elementos.forEach(el => {
 });
 ```
 
+### Ejemplo de filtro con css 
+
+[ejemplo](./js__queryselectAll_ejemplo.html)
+
 La NodeList que devuelve **querySelectorAll** se comporta de manera parecida a un array en cuanto a iteración, aunque no tiene todos sus métodos[^1][^2][^4].
 
 Estas funcionalidades permiten construir interfaces dinámicas y mejorar la experiencia de usuario sin depender de frameworks adicionales. Aprovecha la potencia de los selectores CSS combinados con el recorrido sencillo de los elementos para manipular el DOM de forma eficiente[^2][^4][^5].
