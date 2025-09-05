@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> DOM Render Ejemplo</title>
+</head>
+<body>
+    <h1>Secure DOM Rendering with JavaScript</h1>
+    <div id="output"></div>
+    <div id="output2"></div>
+    <input type="text" id="userInput" placeholder="Enter some text">
+    <button id="renderButton">Render</button>
+    <script>
+        // Example of secure DOM rendering (avoiding innerHTML)
+        const userInput = '<img src=x onerror=alert(1) /> Hello, world!';
+        const outputDiv = document.getElementById('output');
+        // Use textContent to prevent XSS
+        outputDiv.textContent = userInput;
+        output2.innerHTML = userInput;
+        // Button to demonstrate rendering user input securely
+        document.getElementById('renderButton').addEventListener('click', () => {
+            const input = document.getElementById('userInput').value;
+            outputDiv.textContent = input; // Secure rendering
+            output2.innerHTML = input; // Insecure rendering
+        });
+    </script>
+</body>
+</html>
