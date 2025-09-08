@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail Inbox Simulator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f6f8fc;
+            color: #202124;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #1a73e8;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .toolbar {
+            padding: 16px 24px;
+            border-bottom: 1px solid #e8eaed;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: #f8f9fa;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #dadce0;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: #f1f3f4;
+            border-color: #5f6368;
+        }
+
+        .filter-btn.active {
+            background: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+
+        .inbox {
+            background: white;
+        }
+
+        .email {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            border-bottom: 1px solid #e8eaed;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            min-height: 60px;
+        }
+
+        .email:hover {
+            background-color: #f8f9fa;
+            box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0;
+        }
+
+        .email.unread {
+            background-color: #ffffff;
+            font-weight: 500;
+        }
+
+        .email.unread .email-subject {
+            font-weight: 600;
+        }
+
+        .email.read {
+            background-color: #ffffff;
+            opacity: 0.8;
+        }
+
+        .email-checkbox {
+            margin-right: 16px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .email-star {
+            margin-right: 16px;
+            color: #5f6368;
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+
+        .email-star:hover {
+            color: #fbbc04;
+        }
+
+        .email-star.starred {
+            color: #fbbc04;
+        }
+
+        .email-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 0;
+        }
+
+        .email-sender {
+            min-width: 200px;
+            font-weight: 500;
+            color: #202124;
+        }
+
+        .email-subject {
+            flex: 1;
+            color: #202124;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .email-snippet {
+            color: #5f6368;
+            margin-left: 8px;
+            font-weight: 400;
+        }
+
+        .email-date {
+            min-width: 80px;
+            text-align: right;
+            color: #5f6368;
+            font-size: 14px;
+        }
+
+        .email-attachment {
+            margin-left: 8px;
+            color: #5f6368;
+            font-size: 16px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-indicator.unread {
+            background-color: #1a73e8;
+        }
+
+        .status-indicator.read {
+            background-color: transparent;
+        }
+
+        .email-actions {
+            opacity: 0;
+            transition: opacity 0.2s;
+            display: flex;
+            gap: 8px;
+            margin-left: 16px;
+        }
+
+        .email:hover .email-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            padding: 4px 8px;
+            border: none;
+            background: #f1f3f4;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        .action-btn:hover {
+            background: #e8eaed;
+        }
+
+        .counter {
+            margin-left: auto;
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 24px;
+            color: #5f6368;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 8px;
+            color: #202124;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Gmail</h1>
+        </div>
+
+        <div class="toolbar">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="unread">No leídos</button>
+                <button class="filter-btn" data-filter="read">Leídos</button>
+            </div>
+            <div class="counter">
+                <span id="emailCounter">0 mensajes</span>
+            </div>
+        </div>
+
+        <div class="inbox" id="inbox">
+            <!-- Los emails se generarán dinámicamente -->
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo para los emails
+        const emailData = [
+            {
+                id: 1,
+                sender: "GitHub",
+                subject: "Security alert: New sign-in",
+                snippet: "We noticed a new sign-in to your account from a new device...",
+                date: "10:30 AM",
+                read: false,
+                starred: false,
+                hasAttachment: false
+            },
+            {
+                id: 2,
+                sender: "María González",
+                subject: "Reunión de proyecto",
+                snippet: "Hola, necesitamos programar una reunión para revisar el avance...",
+                date: "9:15 AM",
+                read: true,
+                starred: true,
+                hasAttachment: true
+            },
+            {
+                id: 3,
+                sender: "Netflix",
+                subject: "Nuevas series agregadas esta semana",
+                snippet: "Descubre las nuevas series y películas que acabamos de agregar...",
+                date: "Ayer",
+                read: false,
+                starred: false,
+                hasAttachment: false
+            },
+            {
+                id: 4,
+                sender: "LinkedIn",
+                subject: "Tienes 3 nuevas notificaciones",
+                snippet: "Ana Martín y 2 personas más vieron tu perfil esta semana...",
+                date: "Ayer",
+                read: true,
+                starred: false,
+                hasAttachment: false
+            },
+            {
+                id: 5,
+                sender: "Amazon",
+                subject: "Tu pedido ha sido enviado",
+                snippet: "¡Buenas noticias! Tu pedido #123-456789 está en camino...",
+                date: "2 días",
+                read: false,
+                starred: true,
+                hasAttachment: false
+            },
+            {
+                id: 6,
+                sender: "Carlos Ruiz",
+                subject: "Re: Propuesta de diseño",
+                snippet: "Me parece excelente la propuesta, solo tengo algunas observaciones...",
+                date: "3 días",
+                read: true,
+                starred: false,
+                hasAttachment: true
+            },
+            {
+                id: 7,
+                sender: "Spotify",
+                subject: "Tu Discover Weekly está listo",
+                snippet: "30 canciones nuevas seleccionadas especialmente para ti...",
+                date: "4 días",
+                read: false,
+                starred: false,
+                hasAttachment: false
+            },
+            {
+                id: 8,
+                sender: "Banco Central",
+                subject: "Resumen de cuenta - Marzo",
+                snippet: "Adjuntamos tu resumen mensual de movimientos bancarios...",
+                date: "1 semana",
+                read: true,
+                starred: false,
+                hasAttachment: true
+            }
+        ];
+
+        let currentFilter = 'all';
+        
+        // Función para renderizar emails
+        function renderEmails() {
+            const inbox = document.getElementById('inbox');
+            const filteredEmails = getFilteredEmails();
+            
+            if (filteredEmails.length === 0) {
+                inbox.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No hay mensajes</h3>
+                        <p>No se encontraron mensajes con el filtro seleccionado.</p>
+                    </div>
+                `;
+                updateCounter(0);
+                return;
+            }
+
+            inbox.innerHTML = filteredEmails.map(email => `
+                <div class="email ${email.read ? 'read' : 'unread'}" data-id="${email.id}">
+                    <input type="checkbox" class="email-checkbox" data-id="${email.id}">
+                    <div class="status-indicator ${email.read ? 'read' : 'unread'}"></div>
+                    <span class="email-star ${email.starred ? 'starred' : ''}" data-id="${email.id}">
+                        ${email.starred ? '★' : '☆'}
+                    </span>
+                    <div class="email-content">
+                        <div class="email-sender">${email.sender}</div>
+                        <div class="email-subject">
+                            ${email.subject}
+                            <span class="email-snippet">- ${email.snippet}</span>
+                        </div>
+                        ${email.hasAttachment ? '<span class="email-attachment">📎</span>' : ''}
+                    </div>
+                    <div class="email-actions">
+                        <button class="action-btn" data-action="toggle-read" data-id="${email.id}">
+                            ${email.read ? 'Marcar como no leído' : 'Marcar como leído'}
+                        </button>
+                        <button class="action-btn" data-action="delete" data-id="${email.id}">Eliminar</button>
+                    </div>
+                    <div class="email-date">${email.date}</div>
+                </div>
+            `).join('');
+
+            updateCounter(filteredEmails.length);
+        }
+
+        // Función para filtrar emails
+        function getFilteredEmails() {
+            switch(currentFilter) {
+                case 'read':
+                    return emailData.filter(email => email.read);
+                case 'unread':
+                    return emailData.filter(email => !email.read);
+                case 'all':
+                default:
+                    return emailData;
+            }
+        }
+
+        // Función para actualizar contador
+        function updateCounter(count) {
+            const counter = document.getElementById('emailCounter');
+            counter.textContent = `${count} mensaje${count !== 1 ? 's' : ''}`;
+        }
+
+        // Función para cambiar filtro
+        function changeFilter(filter) {
+            currentFilter = filter;
+            
+            // Actualizar botones
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+            
+            // Re-renderizar emails
+            renderEmails();
+        }
+
+        // Función para alternar estado de lectura
+        function toggleReadStatus(emailId) {
+            const email = emailData.find(e => e.id === parseInt(emailId));
+            if (email) {
+                email.read = !email.read;
+                renderEmails();
+            }
+        }
+
+        // Función para alternar estrella
+        function toggleStar(emailId) {
+            const email = emailData.find(e => e.id === parseInt(emailId));
+            if (email) {
+                email.starred = !email.starred;
+                renderEmails();
+            }
+        }
+
+        // Función para eliminar email
+        function deleteEmail(emailId) {
+            const index = emailData.findIndex(e => e.id === parseInt(emailId));
+            if (index !== -1) {
+                emailData.splice(index, 1);
+                renderEmails();
+            }
+        }
+
+        // Event delegation para manejar clicks
+        document.addEventListener('click', function(e) {
+            // Filtros
+            if (e.target.classList.contains('filter-btn')) {
+                const filter = e.target.getAttribute('data-filter');
+                changeFilter(filter);
+            }
+
+            // Estrella
+            if (e.target.classList.contains('email-star')) {
+                e.stopPropagation();
+                const emailId = e.target.getAttribute('data-id');
+                toggleStar(emailId);
+            }
+
+            // Botones de acción
+            if (e.target.classList.contains('action-btn')) {
+                e.stopPropagation();
+                const action = e.target.getAttribute('data-action');
+                const emailId = e.target.getAttribute('data-id');
+                
+                if (action === 'toggle-read') {
+                    toggleReadStatus(emailId);
+                } else if (action === 'delete') {
+                    deleteEmail(emailId);
+                }
+            }
+
+            // Click en email (marcar como leído)
+            if (e.target.classList.contains('email') || e.target.closest('.email')) {
+                const emailElement = e.target.classList.contains('email') ? e.target : e.target.closest('.email');
+                const emailId = emailElement.getAttribute('data-id');
+                const email = emailData.find(e => e.id === parseInt(emailId));
+                
+                if (email && !email.read) {
+                    email.read = true;
+                    renderEmails();
+                }
+            }
+
+            // Checkbox (prevenir que se marque como leído)
+            if (e.target.classList.contains('email-checkbox')) {
+                e.stopPropagation();
+            }
+        });
+
+        // Renderizar emails al cargar la página
+        renderEmails();
+    </script>
+</body>
+</html>

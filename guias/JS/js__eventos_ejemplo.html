@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    nav a.activo {
+      font-weight: bold;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+ <nav>
+  <a href="#" id="enlace1" onclick="cargarContenidoInline('Inicio', this)">Inicio</a>
+  <a href="#" id="enlace2">Servicios</a>
+  <a href="#" id="enlace3">Contacto</a>
+</nav>
+<div id="contenido">Bienvenido</div>
+<script>
+function cargarContenidoInline(texto, enlace) {
+  document.getElementById('contenido').textContent = texto;
+  resaltarEnlace(enlace);
+}
+function resaltarEnlace(enlaceSeleccionado) {
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('activo'));
+  enlaceSeleccionado.classList.add('activo');
+}
+// propiedades  del dom (enlace 2)
+document.getElementById('enlace2').onclick = function(event) {
+  event.preventDefault();
+  document.getElementById('contenido').textContent = 'Servicios';
+  resaltarEnlace(this);
+};
+
+// Opción 3: addEventListener
+
+
+document.getElementById('enlace3').addEventListener('click', function(event) {
+  event.preventDefault();
+  document.getElementById('contenido').textContent = 'Contacto';
+  resaltarEnlace(this);
+});
+
+
+
+
+
+
+
+</script> 
+</body>
+</html>
+
+

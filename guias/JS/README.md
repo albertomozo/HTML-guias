@@ -61,6 +61,8 @@ Este directorio contiene guías y resúmenes prácticos de los principales conce
   *Uso de setTimeout para temporizadores.*
 - [js__navigator_screen_location.md](js__navigator_screen_location.md)  
   *Propiedades útiles del navegador, pantalla y localización.*
+- [js__eventos.md](js__eventos.md)  
+  *distintas formas de invocar los eventos. En HTML, propiedad del DOM y evenListener .*
 
 ### 7. JSON
 

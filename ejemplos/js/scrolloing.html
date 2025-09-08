@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Resalta Elemento al Hacer Scroll</title>
+  <style>
+    body {
+      height: 2000px; /* Para permitir el scroll */
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    .caja {
+      width: 350px;
+      margin: 1200px auto 0 auto; /* Ubica la caja para que requiera hacer scroll */
+      padding: 40px;
+      background: #ffffff;
+      border: 2px solid #333;
+      border-radius: 12px;
+      text-align: center;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .resaltar {
+      background: #ffe066;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      border-color: #ce9b0a;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Ejemplo: Resalta caja al entrar en pantalla</h2>
+  <div id="miElemento" class="caja">
+    ¡He sido resaltado porque aparecí en el viewport!
+  </div>
+  <script>
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top < window.innerHeight && rect.bottom > 0
+      );
+    }
+
+    const objetivo = document.getElementById('miElemento');
+    window.addEventListener('scroll', () => {
+      if (isInViewport(objetivo)) {
+        objetivo.classList.add('resaltar');
+      } else {
+        objetivo.classList.remove('resaltar');
+      }
+    });
+
+    // Para revisar en el primer render
+    if (isInViewport(objetivo)) {
+      objetivo.classList.add('resaltar');
+    }
+  </script>
+</body>
+</html>
