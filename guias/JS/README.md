@@ -61,8 +61,14 @@ Este directorio contiene guías y resúmenes prácticos de los principales conce
   *Uso de setTimeout para temporizadores.*
 - [js__navigator_screen_location.md](js__navigator_screen_location.md)  
   *Propiedades útiles del navegador, pantalla y localización.*
+<<<<<<< HEAD
 - [js__eventos.md](js__eventos.md)  
   *distintas formas de invocar los eventos. En HTML, propiedad del DOM y evenListener .*
+=======
+- [js__DOM_render.md](js__DOM_render.md)  
+  *Generar HTML(DOM) con JS mediante innerHTML y createElement()*
+  
+>>>>>>> d501218c7672c0e782a8ef55a1d958287febefe8
 
 ### 7. JSON
 
@@ -93,7 +99,3 @@ Este directorio contiene guías y resúmenes prácticos de los principales conce
   *USando la lib anime.js*
 
 ---
-
-Cada guía incluye ejemplos y resúmenes tipo cheatsheet para consulta rápida.
-
-¡Feliz

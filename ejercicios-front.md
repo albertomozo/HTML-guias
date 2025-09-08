@@ -436,3 +436,70 @@ Ejercicios prácticos que combinan arrays para alamacenar datos, para mostrar en
 
 https://docs.google.com/document/d/1D8_pcvk3ODNcsSr9-z6Dmyfz0O5Jufn3CZb-DodTdQw/edit?tab=t.0
 
+# EJERCICIO 25
+# CASO REAL. CAMBIAR FORMULARIO.
+
+La empresa te entrega este formulario de registro que lleva años en su web.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Usuario</title>
+</head>
+<body bgcolor="lightgray">
+    <h1 align="center"><font color="blue">Formulario de Registro</font></h1>
+
+    <form action="procesar.php" method="get" onSubmit="return validar()">
+        <table border="1" align="center" cellpadding="10">
+            <tr>
+                <td>Nombre:</td>
+                <td><input type="text" name="nombre"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Contraseña:</td>
+                <td><input type="text" name="password"></td>
+            </tr>
+            <tr>
+                <td>Repetir contraseña:</td>
+                <td><input type="text" name="password2"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Enviar">
+                    <input type="reset" value="Borrar">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function validar() {
+            var nombre = document.forms[0].nombre.value;
+            var email = document.forms[0].email.value;
+            if(nombre == "" || email == "") {
+                alert("Todos los campos son obligatorios");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
+```
+
+El cliente insiste en que "se ve bien" y que no lo cambiemos demasiado, pero te pide que lo modernices y lo hagas seguro.
+
+Necesitan tenerlo actualizado hoy mismo para cumplir con normativa y evitar problemas de seguridad.
+
+No te dicen cómo hacerlo: tu misión es detectar los fallos y arreglarlos rápidamente.
+
+💡 Puedes usar cualquier recurso que consideres oportuno (documentación, buscadores, IA, librerías).
+
+📌 Plazo máximo: unas pocas horas.
+
+👉 Entregable: un nuevo código HTML+CSS+JS del formulario, que cumpla estándares actuales y sea seguro.
