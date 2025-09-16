@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Lista de Deseos</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1, h2 { color: #333; }
+    .producto, .wishlist-item {
+      border: 1px solid #ccc; padding: 10px; margin: 10px 0;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    button {
+      cursor: pointer; padding: 5px 10px; border: none;
+      background-color: #007bff; color: white; border-radius: 4px;
+    }
+    button:hover { background-color: #0056b3; }
+    .wishlist-item button {
+      background-color: #dc3545;
+    }
+    .wishlist-item button:hover {
+      background-color: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Productos</h1>
+  <div id="productos"></div>
+
+  <h2>Mi Lista de Deseos</h2>
+  <div id="wishlist"></div>
+
+  <script>
+    // Datos de ejemplo
+    const productos = [
+      { id: 1, nombre: "Portátil", precio: 900 },
+      { id: 2, nombre: "Móvil", precio: 600 },
+      { id: 3, nombre: "Auriculares", precio: 150 }
+    ];
+
+    const contenedorProductos = document.getElementById("productos");
+    const contenedorWishlist = document.getElementById("wishlist");
+
+    // --- LocalStorage helpers ---
+    function guardarWishlist(lista) {
+      localStorage.setItem("wishlist", JSON.stringify(lista));
+    }
+
+    function obtenerWishlist() {
+      const data = localStorage.getItem("wishlist");
+      return data ? JSON.parse(data) : [];
+    }
+
+    // --- Mostrar productos ---
+    function mostrarProductos() {
+      contenedorProductos.innerHTML = "";
+      productos.forEach(prod => {
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+          <span>${prod.nombre} - ${prod.precio}€</span>
+          <button onclick="agregarAWishlist(${prod.id})">Añadir a deseos</button>
+        `;
+        contenedorProductos.appendChild(div);
+      });
+    }
+
+    // --- Mostrar wishlist ---
+    function mostrarWishlist() {
+      const wishlist = obtenerWishlist();
+      contenedorWishlist.innerHTML = "";
+      wishlist.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("wishlist-item");
+        div.innerHTML = `
+          <span>${item.nombre} - ${item.precio}€</span>
+          <button onclick="eliminarDeWishlist(${item.id})">❌</button>
+        `;
+        contenedorWishlist.appendChild(div);
+      });
+    }
+
+    // --- Añadir y eliminar ---
+    function agregarAWishlist(id) {
+      let wishlist = obtenerWishlist();
+      const producto = productos.find(p => p.id === id);
+
+      if (!wishlist.some(p => p.id === id)) {
+        wishlist.push(producto);
+        guardarWishlist(wishlist);
+        mostrarWishlist();
+      }
+    }
+
+    function eliminarDeWishlist(id) {
+      let wishlist = obtenerWishlist();
+      wishlist = wishlist.filter(p => p.id !== id);
+      guardarWishlist(wishlist);
+      mostrarWishlist();
+    }
+
+    // Inicializar
+    mostrarProductos();
+    mostrarWishlist();
+  </script>
+</body>
+</html>

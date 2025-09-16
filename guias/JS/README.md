@@ -61,16 +61,10 @@ Este directorio contiene guías y resúmenes prácticos de los principales conce
   *Uso de setTimeout para temporizadores.*
 - [js__navigator_screen_location.md](js__navigator_screen_location.md)  
   *Propiedades útiles del navegador, pantalla y localización.*
-<<<<<<< HEAD
 - [js__eventos.md](js__eventos.md)  
   *distintas formas de invocar los eventos. En HTML, propiedad del DOM y evenListener .*
-=======
-- [js__DOM_render.md](js__DOM_render.md)  
-  *Generar HTML(DOM) con JS mediante innerHTML y createElement()*
-  
->>>>>>> d501218c7672c0e782a8ef55a1d958287febefe8
 
-### 7. JSON
+### 7. JSON 
 
 - [JSON__intro.md](JSON__intro.md)  
   *Introducción a JSON y su uso en JavaScript.*
@@ -90,8 +84,13 @@ Este directorio contiene guías y resúmenes prácticos de los principales conce
 - [API__permisos.md](js__API_permisos.md)  
   *las API de JS y los permisos del navegador.*
 
+### 10. localstorage
 
-### 10. Otros
+- [js__localstorage_API__permisos.md](js__localstorage_listadeseos.md)  
+  *Crear una lista de deseos usando el localstorage*
+
+
+### 99. Otros
 
 - [JS__cliente.md](JS__cliente.md)  
   *Guía sobre el objeto cliente y su uso en JavaScript.*
