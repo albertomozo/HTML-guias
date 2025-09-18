@@ -89,6 +89,15 @@ Este directorio contiene guías y resúmenes prácticos de los principales conce
 - [js__localstorage_API__permisos.md](js__localstorage_listadeseos.md)  
   *Crear una lista de deseos usando el localstorage*
 
+###  librerias
+
+- [js__librerias.md](js__librerias.md)  
+  *Introducción a la librerias de JS*
+
+
+- [js__librerias_lista.md](js__librerias_lista.md)  
+  *Lista por funcionalidad de librerias JS*
+
 
 ### 99. Otros
 
