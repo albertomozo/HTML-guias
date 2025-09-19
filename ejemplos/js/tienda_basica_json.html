@@ -11,46 +11,6 @@
     <div id="productos">
         <h2>Productos Disponibles</h2>
         
-        <div class="producto" data-id="1" data-precio="25.99">
-            <h3>Camiseta</h3>
-            <p>Precio: €25.99</p>
-            <label>Cantidad: </label>
-            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
-        </div>
-        
-        <div class="producto" data-id="2" data-precio="45.50">
-            <h3>Pantalón</h3>
-            <p>Precio: €45.50</p>
-            <label>Cantidad: </label>
-            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
-        </div>
-        
-        <div class="producto" data-id="3" data-precio="89.99">
-            <h3>Zapatillas</h3>
-            <p>Precio: €89.99</p>
-            <label>Cantidad: </label>
-            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
-        </div>
-        
-        <div class="producto" data-id="4" data-precio="15.75">
-            <h3>Gorra</h3>
-            <p>Precio: €15.75</p>
-            <label>Cantidad: </label>
-            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
-        </div>
-        
-        <div class="producto" data-id="5" data-precio="35.00">
-            <h3>Sudadera</h3>
-            <p>Precio: €35.00</p>
-            <label>Cantidad: </label>
-            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
-        </div>
-    <div class="producto" data-id="6" data-precio="55.00">
-            <h3>Zapato</h3>
-            <p>Precio: €55.00</p>
-            <label>Cantidad: </label>
-            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
-        </div>
     </div>
     
     <hr>
@@ -65,6 +25,47 @@
     </div>
 
     <script>
+       let  articulos =[
+            {
+                "id":"6",
+                "precio":55.00,
+                "nombre" : "Zapato",
+                "imagen":"img/zapato.jgp"
+    
+            },
+            {
+                "id":"6",
+                "precio":75.00,
+                "nombre" : "Camisa",
+                "imagen":"img/zapato.jgp"
+    
+            },
+                {
+                "id":"6",
+                "precio":57.00,
+                "nombre" : "calcetin",
+                "imagen":"img/zapato.jgp"
+    
+            },
+                {
+                "id":"6",
+                "precio":55.00,
+                "nombre" : "Zapato",
+                "imagen":"img/zapato.jgp"
+    
+            },
+                {
+                "id":"6",
+                "precio":55.00,
+                "nombre" : "Zapato",
+                "imagen":"img/zapato.jgp"
+    
+            }
+
+        ];
+
+
+
         function calcularTotal() {
             let totalGeneral = 0;
             let resumen = '';
@@ -107,8 +108,25 @@
             // Recalcular total
             calcularTotal();
         }
+
+        function pintarArticulos(){
+            let  textoArticulos  = '<h2>Productos Disponibles</h2>';
+            articulos.forEach(articulo => {
+
+                textoArticulos += ` <div class="producto" data-id="${articulo.id}" data-precio="${articulo.precio}">
+            <h3>${articulo.nombre}</h3>
+            <p>Precio: €${articulo.precio}</p>
+            <label>Cantidad: </label>
+            <input type="number" class="cantidad" min="0" value="0" onchange="calcularTotal()">
+        </div>` ;
+            })
+            document.getElementById('productos').innerHTML=textoArticulos;
+
+       
+        }
         
         // Inicializar al cargar la página
+        pintarArticulos(); 
         calcularTotal();
     </script>
 </body>
