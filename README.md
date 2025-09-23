@@ -28,22 +28,22 @@ Una base importe para entender la programación.
 
 ## JAVASCRIPT
 
-- [JAVASCRIPT](JS/README.md)
+- [JAVASCRIPT](./guias/JS/README.md)
   *Guía de lso conceptos más importantes de JS*
 
 ## SEO
 
-- [SEO](SEO/README.md)
+- [SEO](./guias/SEO/README.md)
   *Guía de los conceptos más importantes del posicionamiento web *
 
 ## WORPRESS
 
-- [WORDPRESS](WORDPRES/README.md)
+- [WORDPRESS](./guias/WORDPRES/README.md)
   *Guía de lso conceptos más importantes de  WORDPRESS*
 
 ## SERVIDORES
 
-- [SERVIDORES](servidores/README.md)
+- [SERVIDORES](./guias/servidores/README.md)
   *Las web hay qe alojarla en servidores. Aqui encintraras información util de servidores, tipos de aplicaciones*
 
 ## EJEMPLOS 
