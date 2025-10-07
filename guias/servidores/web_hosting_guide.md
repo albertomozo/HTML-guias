@@ -193,6 +193,7 @@ Un dominio es la dirección única de tu sitio web en Internet (ej: www.misitiow
 ### Paso 4: Proveedores Recomendados
 
 #### Para Principiantes (España)
+- **infinityfree:** alojamiento gratuito LAMP
 - **Raiola Networks:** Excelente soporte en español
 - **Webempresa:** Especializado en WordPress
 - **SiteGround:** Panel fácil, buen rendimiento

@@ -1,0 +1,73 @@
+{
+"document": {
+"name": "Plantilla de ejercicio UX/UI",
+"pages": [
+{
+"name": "Portada",
+"frames": [
+{
+"name": "Portada Principal",
+"width": 1440,
+"height": 900,
+"backgroundColor": "#FFFFFF",
+"elements": [
+{"type": "text", "content": "Plantilla de ejercicio UX/UI", "x": 720, "y": 200, "fontSize": 48, "fontWeight": "bold", "color": "#1a73e8", "textAlign": "center"},
+{"type": "text", "content": "Guía educativa para practicar el proceso UX/UI en proyectos web/app.", "x": 720, "y": 300, "fontSize": 18, "color": "#333333", "textAlign": "center"}
+]
+}
+]
+},
+{
+"name": "Secciones",
+"frames": [
+{
+"name": "Información del Proyecto",
+"width": 1440,
+"height": 400,
+"backgroundColor": "#F5F5F5",
+"elements": [
+{"type": "text", "content": "1. Información del Proyecto", "x": 40, "y": 40, "fontSize": 24, "fontWeight": "bold", "color": "#1a73e8"},
+{"type": "text", "content": "Nombre del Proyecto: ____________________", "x": 60, "y": 100, "fontSize": 16, "color": "#333333"},
+{"type": "text", "content": "Objetivo principal: _____________________", "x": 60, "y": 140, "fontSize": 16, "color": "#333333"},
+{"type": "text", "content": "Público objetivo: ______________________", "x": 60, "y": 180, "fontSize": 16, "color": "#333333"}
+]
+},
+{
+"name": "Investigación de Usuarios",
+"width": 1440,
+"height": 500,
+"backgroundColor": "#FFFFFF",
+"elements": [
+{"type": "text", "content": "2. Investigación de Usuarios", "x": 40, "y": 40, "fontSize": 24, "fontWeight": "bold", "color": "#1a73e8"},
+{"type": "text", "content": "Describe la investigación: entrevistas, encuestas, observación.", "x": 60, "y": 100, "fontSize": 16, "color": "#333333"},
+{"type": "rectangle", "x": 60, "y": 140, "width": 500, "height": 200, "fillColor": "#E0E0E0"}
+]
+},
+{
+"name": "Wireframes y Diseño UI",
+"width": 1440,
+"height": 700,
+"backgroundColor": "#F5F5F5",
+"elements": [
+{"type": "text", "content": "3. Wireframes", "x": 40, "y": 40, "fontSize": 24, "fontWeight": "bold", "color": "#1a73e8"},
+{"type": "rectangle", "x": 60, "y": 100, "width": 600, "height": 250, "fillColor": "#E0E0E0"},
+{"type": "text", "content": "4. Diseño UI", "x": 40, "y": 380, "fontSize": 24, "fontWeight": "bold", "color": "#1a73e8"},
+{"type": "rectangle", "x": 60, "y": 420, "width": 600, "height": 200, "fillColor": "#E0E0E0"}
+]
+},
+{
+"name": "Pruebas y Mejoras",
+"width": 1440,
+"height": 400,
+"backgroundColor": "#FFFFFF",
+"elements": [
+{"type": "text", "content": "5. Pruebas y Mejoras", "x": 40, "y": 40, "fontSize": 24, "fontWeight": "bold", "color": "#1a73e8"},
+{"type": "rectangle", "x": 60, "y": 100, "width": 500, "height": 200, "fillColor": "#E0E0E0"},
+{"type": "text", "content": "Describe el test de usabilidad y mejoras propuestas.", "x": 60, "y": 320, "fontSize": 16, "color": "#333333"}
+]
+}
+]
+}
+]
+}
+}
