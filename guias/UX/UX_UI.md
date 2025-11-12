@@ -89,4 +89,12 @@ UI = diseñar con coherencia.
 * [ ] Se ve y funciona bien en móvil.
 * [ ] Pido feedback real de usuarios y mejoro con él.
 
+## Enlaces inbteresantes
+
+- [Claves del Diseño de interfaces](https://www.linkedin.com/pulse/dise%C3%B1o-de-interfaces-claves-para-desarrolladores-web-regino-fu9rf/?trackingId=Lwlc%2FNOEbG3B0KsF8PGJBQ%3D%3D)
+
+
+
+
+
 
